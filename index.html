@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Boxes - Color & Size Selectors</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f4f0f8;
+        display: flex;
+        justify-content: center;
+        padding: 40px 20px;
+      }
+
+      .bundle-container {
+        background: white;
+        border-radius: 12px;
+        padding: 24px;
+        max-width: 420px;
+        width: 100%;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        text-align: center;
+        color: #6a0dad;
+        margin-bottom: 20px;
+      }
+
+      .bundle-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .bundle-option {
+        border: 2px solid #ddd;
+        border-radius: 12px;
+        padding: 15px;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .bundle-option.selected {
+        border-color: #6a0dad;
+        background-color: #f8f2fb;
+      }
+
+      .bundle-option input[type="radio"] {
+        float: left;
+        margin-top: 6px;
+        margin-right: 10px;
+        accent-color: #6a0dad;
+      }
+
+      .bundle-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .bundle-info .right {
+        color: #6a0dad;
+        font-weight: bold;
+        font-size: 13px;
+      }
+
+      .strikethrough {
+        text-decoration: line-through;
+        color: #999;
+        font-size: 12px;
+      }
+
+      .most-popular {
+        background: #6a0dad;
+        color: white;
+        font-size: 10px;
+        padding: 2px 6px;
+        border-radius: 4px;
+        margin-right: 5px;
+      }
+
+      .dropdowns {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-in-out;
+        margin-top: 10px;
+      }
+
+      .bundle-option.selected .dropdowns {
+        max-height: 300px;
+      }
+
+      .pair {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .pair label {
+        width: 20px;
+        font-weight: bold;
+      }
+
+      select {
+        flex: 1;
+        padding: 6px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+      }
+
+      .shipping {
+        text-align: center;
+        color: #6a0dad;
+        margin: 15px 0;
+        font-size: 14px;
+      }
+
+      .total {
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 15px;
+        font-size: 16px;
+      }
+
+      button {
+        width: 100%;
+        background: #6a0dad;
+        color: white;
+        padding: 14px;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #580a96;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bundle-container">
+      <h2>Bundle & Save</h2>
+
+      <div class="bundle-wrapper">
+        <!-- Top Box (1 Pair) -->
+        <div class="bundle-option selected" onclick="selectBundle(1, 195)">
+          <input type="radio" name="bundle" checked />
+          <div class="bundle-info">
+            <div class="left">
+              <strong>1 Pair</strong><br />
+              INR 195.00
+            </div>
+            <div class="right">50% OFF</div>
+          </div>
+          <div class="dropdowns" id="dropdowns-1">
+            <div class="pair">
+              <label>#1</label>
+              <select>
+                <option>Size</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+              </select>
+              <select>
+                <option>Color</option>
+                <option>Red</option>
+                <option>Blue</option>
+                <option>Black</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Middle Box (2 Pair) -->
+        <div class="bundle-option" onclick="selectBundle(2, 345)">
+          <input type="radio" name="bundle" />
+          <div class="bundle-info">
+            <div class="left">
+              <strong>2 Pair</strong><br />
+              INR 345.00 <span class="strikethrough">INR 575.00</span>
+            </div>
+            <div class="right">
+              <span class="most-popular">Most Popular</span>40% OFF
+            </div>
+          </div>
+          <div class="dropdowns" id="dropdowns-2">
+            <div class="pair">
+              <label>#1</label>
+              <select>
+                <option>Size</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+              </select>
+              <select>
+                <option>Color</option>
+                <option>Red</option>
+                <option>Blue</option>
+                <option>Black</option>
+              </select>
+            </div>
+            <div class="pair">
+              <label>#2</label>
+              <select>
+                <option>Size</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+              </select>
+              <select>
+                <option>Color</option>
+                <option>Red</option>
+                <option>Blue</option>
+                <option>Black</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="bundle-option" onclick="selectBundle(3, 528)">
+          <input type="radio" name="bundle" />
+          <div class="bundle-info">
+            <div class="left">
+              <strong>3 Pair</strong><br />
+              INR 528.00
+            </div>
+            <div class="right">60% OFF</div>
+          </div>
+          <div class="dropdowns" id="dropdowns-3">
+            <div class="pair">
+              <label>#1</label>
+              <select>
+                <option>Size</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+              </select>
+              <select>
+                <option>Color</option>
+                <option>Red</option>
+                <option>Blue</option>
+                <option>Black</option>
+              </select>
+            </div>
+            <div class="pair">
+              <label>#2</label>
+              <select>
+                <option>Size</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+              </select>
+              <select>
+                <option>Color</option>
+                <option>Red</option>
+                <option>Blue</option>
+                <option>Black</option>
+              </select>
+            </div>
+            <div class="pair">
+              <label>#3</label>
+              <select>
+                <option>Size</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+              </select>
+              <select>
+                <option>Color</option>
+                <option>Red</option>
+                <option>Blue</option>
+                <option>Black</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="shipping">Free 2 Day Shipping</div>
+      <div class="total">Total : INR <span id="total">195.00</span></div>
+      <button>+ Add to Cart</button>
+    </div>
+
+    <script>
+      function selectBundle(id, price) {
+        const bundles = document.querySelectorAll(".bundle-option");
+        bundles.forEach((el, index) => {
+          el.classList.remove("selected");
+          el.querySelector("input").checked = false;
+        });
+
+        bundles[id - 1].classList.add("selected");
+        bundles[id - 1].querySelector("input").checked = true;
+
+        document.getElementById("total").innerText = price.toFixed(2);
+      }
+    </script>
+  </body>
+</html>
